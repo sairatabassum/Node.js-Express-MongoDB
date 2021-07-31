@@ -14,4 +14,21 @@ const data1 = require("./students_data.json");
 // delete data.friends[0].Name;
 // console.log(data);
 
+// LOOP
+// for (x in data) {
+//   console.log(x);
+//   console.log(data[x]);
+// }
+
+// JS Object -> JSON
+// const data2 = {
 //
+// };name: "saira",
+//   age: 23,
+
+// console.log(typeof data2);
+// console.log(JSON.stringify(data2));
+
+// JSON -> JS Object
+
+// console.log(JSON.parse('{"name":"saira", "age":34}'));
