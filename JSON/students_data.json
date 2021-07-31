@@ -1,0 +1,41 @@
+{
+  "students": [
+    {
+      "name": "saira tabassum",
+      "middleName": "null",
+      "age": 22,
+      "cgpa": 3.4,
+      "isRegistered": true,
+      "languages": ["Bengali", "Hindi", "English"],
+      "friends": [
+        {
+          "Name": "Anar",
+          "Age": 25
+        },
+        {
+          "Name": "Ruhul",
+          "Age": 28
+        }
+      ]
+    },
+
+    {
+      "name": "Rabeya Begum",
+      "middleName": "null",
+      "age": 30,
+      "cgpa": 3.92,
+      "isRegistered": false,
+      "languages": ["Bengali", "Hindi", "English"],
+      "friends": [
+        {
+          "Name": "Anar",
+          "Age": 25
+        },
+        {
+          "Name": "Ruhul",
+          "Age": 28
+        }
+      ]
+    }
+  ]
+}
