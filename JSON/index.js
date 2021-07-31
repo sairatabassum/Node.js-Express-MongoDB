@@ -22,9 +22,9 @@ const data1 = require("./students_data.json");
 
 // JS Object -> JSON
 // const data2 = {
-//
-// };name: "saira",
+//   name: "saira",
 //   age: 23,
+// };
 
 // console.log(typeof data2);
 // console.log(JSON.stringify(data2));
