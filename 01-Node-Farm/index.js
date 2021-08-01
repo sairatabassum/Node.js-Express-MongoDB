@@ -1,10 +1,12 @@
 // Using Modules
 const fs = require('fs');
+const http = require('http');
 
 // const hello = 'hello world';
 // console.log(hello);
 
-// Reading and Writing Files
+/////////////////////////////////////
+// ******Reading and Writing Files*******
 // Blocking, synchronous way
 /*
 const textIn = fs.readFileSync('./txt/input.txt', 'utf-8');
@@ -15,6 +17,7 @@ fs.writeFileSync('./txt/output.txt', textOut);
 console.log('File has been written');
 */
 
+//////////////////////////////////////////
 // Non-blocking, asynchronous way
 // Reading and Writing Files Asynchronously
 
@@ -23,6 +26,7 @@ console.log('File has been written');
 // });
 
 // fs.readFile('./txt/starttt.txt', 'utf-8', (err, data1) => { // file does not exist
+/*
 fs.readFile('./txt/start.txt', 'utf-8', (err, data1) => {
   if (err) return console.log('Error!!');
 
@@ -38,3 +42,7 @@ fs.readFile('./txt/start.txt', 'utf-8', (err, data1) => {
   });
 });
 console.log('will  read file!!');
+*/
+
+//////////////////////////////////////
+// Creating a Simple Web Server
