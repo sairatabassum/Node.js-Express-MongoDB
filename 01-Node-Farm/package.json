@@ -4,11 +4,10 @@
   "description": "learning node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index1.js"
   },
   "author": "saira",
   "license": "ISC",
-  
   "dependencies": {
     "slugify": "^1.6.0"
   },
