@@ -74,7 +74,7 @@ server.listen(8000, '127.0.0.1', () => {
 
 //////////////////////////////////////////
 // Building a (Very) Simple API
-/*
+
 // ** executed once **
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const productData = JSON.parse(data);
@@ -89,8 +89,8 @@ const server = http.createServer((req, res) => {
   } else if (pathName === '/api') {
     // ** executed each time **
     // fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
-    //   // const productData = JSON.parse(data);
-    //   // console.log(productData);
+    //   const productData = JSON.parse(data);
+    //   console.log(productData);
     //   res.writeHead(200, { 'Content-type': 'application/json' });
     //   res.end(data);
     // });
@@ -109,4 +109,3 @@ const server = http.createServer((req, res) => {
 server.listen(8000, '127.0.0.1', () => {
   console.log('Listening to request on port 8000');
 });
-*/
