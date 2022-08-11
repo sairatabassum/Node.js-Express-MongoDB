@@ -9,9 +9,9 @@
   "author": "saira",
   "license": "ISC",
   "dependencies": {
-    "slugify": "^1.6.0"
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.19"
   }
 }
