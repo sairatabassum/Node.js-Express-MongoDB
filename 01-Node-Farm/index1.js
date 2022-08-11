@@ -43,6 +43,7 @@ const server = http.createServer((req, res) => {
   else if (pathname === '/product') {
     res.writeHead(200, { 'Content-type': 'text/html' });
     const product = productData[query.id];
+    console.log(product);
     const output = replaceTemplate(tempProduct, product);
     res.end(output);
   }
