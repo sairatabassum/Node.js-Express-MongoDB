@@ -1,15 +1,15 @@
 {
   "name": "node-farm",
   "version": "1.0.0",
-  "description": "learning node.js",
+  "description": "Learning node.js",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index1.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "saira",
+  "author": "Saira Tabassum",
   "license": "ISC",
   "dependencies": {
-    "slugify": "~1.6.5"
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
