@@ -1,9 +1,24 @@
 const fs = require('fs');
 const express = require('express');
 const { get } = require('http');
+const morgan = require('morgan');
 
 const app = express();
+
+// 1) Middlewares
+app.use(morgan('dev'));
+
 app.use(express.json());
+
+app.use((req, res, next) => {
+  console.log('Hello from the middleware service');
+  next();
+});
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
 
 // app.get('/', (req, res) => {
 //   //   res.status(200).send('Hell from the server side');
@@ -16,13 +31,17 @@ app.use(express.json());
 //   res.send('You can post to endpoint');
 // });
 
+// 2)) Route handlers
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
 const getAllTours = (req, res) => {
+  console.log(req.requestTime);
+
   res.status(200).json({
     status: 'success',
+    requestedAt: req.requestTime,
     result: tours.length,
     data: { tours },
   });
@@ -69,7 +88,7 @@ const deleteTour = (req, res) => {
   if (req.params.id * 1 > tours.length) {
     return res.status(404).json({
       status: 'fail',
-      message: 'inavlid fail',
+      message: 'invalid fail',
     });
   }
   res.status(204).json({
@@ -104,6 +123,8 @@ const createTour = (req, res) => {
 // app.delete('/api/v1/tours/:id', deleteTour);
 // app.post('/api/v1/tours', createTour);
 
+// 3) ROUTES
+
 app.route('/api/v1/tours').get(getAllTours).post(createTour);
 app
   .route('/api/v1/tours/:id')
@@ -111,6 +132,7 @@ app
   .patch(updateTour)
   .delete(deleteTour);
 
+// 4) START SERVER
 const port = 3000;
 app.listen(port, () => {
   console.log(`App running on port ${port}`);
