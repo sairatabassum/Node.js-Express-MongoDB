@@ -89,7 +89,7 @@ exports.createTour = async (req, res) => {
 
   // const newTour = new Tour({});
   // newTour.save();
-
+try{
   const newTour = await Tour.create(req.body);
 
   res.status(201).json({
@@ -97,6 +97,12 @@ exports.createTour = async (req, res) => {
     data:{
       tour:newTour
     }
-  });
+  });}
+  catch(err){
+    res.status(400).json({
+      status:"failed",
+      message:err
+    })
+  }
 };
 
