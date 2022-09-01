@@ -1,5 +1,5 @@
 const fs = require('fs');
-const Tour=require('./../models/tourModel');
+const Tour = require('./../models/tourModel');
 
 // const tours = JSON.parse(
 //   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
@@ -17,22 +17,22 @@ const Tour=require('./../models/tourModel');
 //   next();
 // };
 
-exports.checkbody = (req, res, next) => {
-  if (!req.body.name || !req.body.price) {
-    return res.status(400).json({
-      status: 'fail',
-      meassege: 'Missing name or price',
-    });
-  }
-  next();
-};
+// exports.checkbody = (req, res, next) => {
+//   if (!req.body.name || !req.body.price) {
+//     return res.status(400).json({
+//       status: 'fail',
+//       meassege: 'Missing name or price',
+//     });
+//   }
+//   next();
+// };
 
 exports.getAllTours = (req, res) => {
   console.log(req.requestTime);
 
   res.status(200).json({
     status: 'success',
-    requestedAt: req.requestTime,
+    requestedAt: req.requestTime
     // result: tours.length,
     // data: { tours },
   });
@@ -56,19 +56,19 @@ exports.updateTour = (req, res) => {
   res.status(200).json({
     status: 'success',
     data: {
-      tour: '<updated tour here>',
-    },
+      tour: '<updated tour here>'
+    }
   });
 };
 
 exports.deleteTour = (req, res) => {
   res.status(204).json({
     status: 'success',
-    data: null,
+    data: null
   });
 };
 
-exports.createTour = (req, res) => {
+exports.createTour = async (req, res) => {
   // console.log(req.body);
   // const newId = tours[tours.length - 1].id + 1;
   // const newTour = Object.assign({ id: newId }, req.body);
@@ -87,7 +87,13 @@ exports.createTour = (req, res) => {
   //   }
   // );
 
+  // const newTour = new Tour({});
+  // newTour.save();
+
+  const newTour = await Tour.create({}).then();
+
   res.status(201).json({
-    status:'success'
-  })
+    status: 'success'
+  });
 };
+
