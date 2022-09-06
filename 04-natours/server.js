@@ -11,6 +11,8 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .then((con) => {
     // console.log(con.connections);
