@@ -4,6 +4,10 @@ const router = express.Router();
 
 // router.param('id', tourController.checkID);
 
+router
+  .route('/top-5-cheap')
+  .get(tourController.aliasTopTours, tourController.getAllTours);
+
 // create a checkbody middleware
 // Check f body contains the name and price property
 // if not send 400 (bad request)
@@ -20,4 +24,3 @@ router
   .delete(tourController.deleteTour);
 
 module.exports = router;
-
