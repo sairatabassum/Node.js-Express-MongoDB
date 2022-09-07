@@ -34,15 +34,14 @@ exports.aliasTopTours = (req, res, next) => {
 //   next();
 // };
 
-exports.getAllTours = async (req, res) => {
-  // console.log(req.requestTime);
-
-  try {
-    console.log(req.query);
-
-    // BUILD QUERY
+class APIfeatures {
+  constructor(query, queryString) {
+    this.query = query;
+    this.queryString = queryString;
+  }
+  filter() {
     // 1A) Filtering
-    const queryObj = { ...req.query };
+    const queryObj = { ...this.queryString };
     const excludeFields = ['page', 'sort', 'limit', 'fields'];
 
     excludeFields.forEach((el) => delete queryObj[el]);
@@ -52,6 +51,51 @@ exports.getAllTours = async (req, res) => {
     // 1B) Advanced filtering
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+
+    this.query.find(JSON.parse(queryStr));
+    return this;
+  }
+
+  // 2) SORTING
+  sort() {
+    if (this.queryString.sort) {
+      const sortBy = this.queryString.sort.split(',').join(' ');
+      this.query = this.query.sort(sortBy);
+    } else {
+      query = query.sort('-createdAt');
+    }
+    return this;
+  }
+  limitFileds() {
+    // 3) FIELD LIMITING
+    if (this.queryString.fileds) {
+      const fields = this.queryString.fileds.split(',').join(' ');
+      this.query = this.query.select(fields);
+    } else {
+      this.query = this.query.select('-__v');
+    }
+    return this;
+  }
+}
+
+exports.getAllTours = async (req, res) => {
+  // console.log(req.requestTime);
+
+  try {
+    console.log(req.query);
+
+    // BUILD QUERY
+    // 1A) Filtering
+    // const queryObj = { ...req.query };
+    // const excludeFields = ['page', 'sort', 'limit', 'fields'];
+
+    // excludeFields.forEach((el) => delete queryObj[el]);
+
+    // // console.log(req.query, queryObj);
+
+    // // 1B) Advanced filtering
+    // let queryStr = JSON.stringify(queryObj);
+    // queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
     // console.log(JSON.parse(queryStr));
 
     // { difficulty: 'easy', duration: { $gte: 5 } }
@@ -69,24 +113,24 @@ exports.getAllTours = async (req, res) => {
     //   .where('difficulty')
     //   .equals('easy');
 
-    let query = Tour.find(JSON.parse(queryStr));
+    // let query = Tour.find(JSON.parse(queryStr));
 
-    // 2) SORTING
-    if (req.query.sort) {
-      const sortBy = req.query.sort.split(',').join(' ');
-      console.log(sortBy);
-      query = query.sort(req.query.sort);
-    } else {
-      query = query.sort('-createdAt');
-    }
+    // // 2) SORTING
+    // if (req.query.sort) {
+    //   const sortBy = req.query.sort.split(',').join(' ');
+    //   console.log(sortBy);
+    //   query = query.sort(req.query.sort);
+    // } else {
+    //   query = query.sort('-createdAt');
+    // }
 
-    // 3) FIELD LIMITING
-    if (req.query.fileds) {
-      const fields = req.query.fileds.split(',').join(' ');
-      query = query.select(fields);
-    } else {
-      query = query.select('-__v');
-    }
+    // // 3) FIELD LIMITING
+    // if (req.query.fileds) {
+    //   const fields = req.query.fileds.split(',').join(' ');
+    //   query = query.select(fields);
+    // } else {
+    //   query = query.select('-__v');
+    // }
 
     // 4)PAGINATION
     const page = req.query.page * 1 || 1;
@@ -102,7 +146,8 @@ exports.getAllTours = async (req, res) => {
     }
 
     // EXECUTE QUERY
-    const tours = await query;
+    const features = new APIfeatures(Tour.find(), req.query).filter().sort();
+    const tours = await features.query;
 
     // SEND RESPONSE
     res.status(200).json({
