@@ -39,7 +39,7 @@ exports.getAllTours = async (req, res) => {
   // console.log(req.requestTime);
 
   try {
-    console.log(req.query);
+    // console.log(req.query);
 
     // BUILD QUERY
     // 1A) Filtering
@@ -107,14 +107,14 @@ exports.getAllTours = async (req, res) => {
       .filter()
       .sort()
       .limitFileds()
-      .pagination(0);
+      .pagination();
     const tours = await features.query;
-
+    console.log(tours);
     // SEND RESPONSE
     res.status(200).json({
       status: 'success',
       // requestedAt: req.requestTime
-      result: tours.length,
+      results: tours.length,
       data: { tours },
     });
   } catch (err) {
@@ -219,6 +219,37 @@ exports.createTour = async (req, res) => {
       status: 'success',
       data: {
         tour: newTour,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'failed',
+      message: err,
+    });
+  }
+};
+
+exports.getTourStats = async (req, res) => {
+  try {
+    const stats = await Tour.aggregate([
+      {
+        $match: { ratingAverage: { $gte: 4.5 } },
+      },
+      {
+        $group: {
+          _id: null,
+          numRatings: { $sum: '$ratingQuantity' },
+          argrating: { $avg: '$ratingAverage' },
+          avgPrice: { $avg: '$price' },
+          minPrice: { $min: '$price' },
+          maxPrice: { $max: '$price' },
+        },
+      },
+    ]);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        stats,
       },
     });
   } catch (err) {
