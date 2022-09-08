@@ -9,6 +9,8 @@ router
   .get(tourController.aliasTopTours, tourController.getAllTours);
 
 router.route('/tour-stats').get(tourController.getTourStats);
+router.route('/monthly-plan/:year').get(tourController.getMonthlyPlan);
+
 // create a checkbody middleware
 // Check f body contains the name and price property
 // if not send 400 (bad request)
