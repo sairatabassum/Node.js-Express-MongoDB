@@ -16,6 +16,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.19",
     "slug": "^8.0.0",
-    "slugify": "^1.6.5"
+    "slugify": "^1.6.5",
+    "validator": "^13.7.0"
   }
 }
