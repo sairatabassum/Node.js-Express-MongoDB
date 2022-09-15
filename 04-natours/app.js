@@ -2,6 +2,8 @@ const express = require('express');
 const { get } = require('http');
 const morgan = require('morgan');
 
+const AppError = require('./utils/appError');
+
 const tourRouter = require('./routes/tourRoute');
 const userRouter = require('./routes/userRoute');
 
@@ -65,6 +67,8 @@ app.all('*', (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
+  console.log(err.stack);
+
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
   res.status(err.statusCode).json({
