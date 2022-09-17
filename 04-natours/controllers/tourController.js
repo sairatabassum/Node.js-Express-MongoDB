@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Tour = require('./../models/tourModel');
 const APIfeatures = require('./../utils/apiFeatures');
+const catchAsync = require('./../utils/catchAsync');
 
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
@@ -191,11 +192,10 @@ exports.deleteTour = async (req, res) => {
   }
 };
 
-exports.createTour = async (req, res) => {
+exports.createTour = catchAsync(async (req, res) => {
   // console.log(req.body);
   // const newId = tours[tours.length - 1].id + 1;
   // const newTour = Object.assign({ id: newId }, req.body);
-
   // tours.push(newTour);
   // fs.writeFile(
   //   `${__dirname}/dev-data/data/tours-simple.json`,
@@ -209,25 +209,32 @@ exports.createTour = async (req, res) => {
   //     });
   //   }
   // );
-
   // const newTour = new Tour({});
   // newTour.save();
-  try {
-    const newTour = await Tour.create(req.body);
+  // try {
+  //   const newTour = await Tour.create(req.body);
+  //   res.status(201).json({
+  //     status: 'success',
+  //     data: {
+  //       tour: newTour,
+  //     },
+  //   });
+  // } catch (err) {
+  //   res.status(400).json({
+  //     status: 'failed',
+  //     message: err,
+  //   });
+  // }
 
-    res.status(201).json({
-      status: 'success',
-      data: {
-        tour: newTour,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'failed',
-      message: err,
-    });
-  }
-};
+  const newTour = await Tour.create(req.body);
+
+  res.status(201).json({
+    status: 'success',
+    data: {
+      tour: newTour,
+    },
+  });
+});
 
 exports.getTourStats = async (req, res) => {
   try {
