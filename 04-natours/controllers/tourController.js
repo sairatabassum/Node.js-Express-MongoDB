@@ -36,7 +36,7 @@ exports.aliasTopTours = (req, res, next) => {
 //   next();
 // };
 
-exports.getAllTours = async (req, res) => {
+exports.getAllTours = catchAsync(async (req, res) => {
   // console.log(req.requestTime);
 
   try {
@@ -124,9 +124,9 @@ exports.getAllTours = async (req, res) => {
       message: err,
     });
   }
-};
+});
 
-exports.getTour = async (req, res) => {
+exports.getTour = catchAsync(async (req, res) => {
   // console.log(req.params);
 
   // const id = req.params.id * 1;
@@ -155,9 +155,9 @@ exports.getTour = async (req, res) => {
   //     tour,
   //   },
   // });
-};
+});
 
-exports.updateTour = async (req, res) => {
+exports.updateTour = catchAsync(async (req, res) => {
   try {
     const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -175,9 +175,9 @@ exports.updateTour = async (req, res) => {
       message: err,
     });
   }
-};
+});
 
-exports.deleteTour = async (req, res) => {
+exports.deleteTour = catchAsync(async (req, res) => {
   try {
     const tour = await Tour.findByIdAndDelete(req.params.id);
     res.status(204).json({
@@ -190,9 +190,9 @@ exports.deleteTour = async (req, res) => {
       message: err,
     });
   }
-};
+});
 
-exports.createTour = catchAsync(async (req, res) => {
+exports.createTour = catchAsync(async (req, res, next) => {
   // console.log(req.body);
   // const newId = tours[tours.length - 1].id + 1;
   // const newTour = Object.assign({ id: newId }, req.body);
@@ -236,7 +236,7 @@ exports.createTour = catchAsync(async (req, res) => {
   });
 });
 
-exports.getTourStats = async (req, res) => {
+exports.getTourStats = catchAsync(async (req, res) => {
   try {
     const stats = await Tour.aggregate([
       {
@@ -272,9 +272,9 @@ exports.getTourStats = async (req, res) => {
       message: err,
     });
   }
-};
+});
 
-exports.getMonthlyPlan = async (req, res) => {
+exports.getMonthlyPlan = catchAsync(async (req, res) => {
   try {
     const year = req.params.year * 1; //2021
     const plan = await Tour.aggregate([
@@ -324,4 +324,4 @@ exports.getMonthlyPlan = async (req, res) => {
       message: err,
     });
   }
-};
+});
