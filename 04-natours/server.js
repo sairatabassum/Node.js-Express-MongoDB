@@ -18,12 +18,21 @@ mongoose
     // console.log(con.connections);
     console.log('DB connection successful!');
   });
+// .catch((err) => console.log('ERROR!!'));
 
 const app = require('./app');
 // console.log(app.get('env'));
 // console.log(process.env);
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`App running on port ${port}`);
+});
+
+process.on('unhandledRejection', (err) => {
+  console.log(err.name, err.message);
+  console.log('UNHANDLER REHECTION SHUTTING DOWN...');
+  server.close(() => {
+    process.exit(1);
+  });
 });
