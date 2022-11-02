@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  console.log(req.body);
+  console.log(req.body.name);
   res.send("this is home page with post method");
 });
 
