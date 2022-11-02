@@ -1,7 +1,7 @@
 // Module scaffolding
-const sampleHandler = {};
+const handler = {};
 
-sampleHandler.handle = () => {
+handler.sampleHandler = () => {
   console.log("Sample");
 };
-module.exports = sampleHandler;
+module.exports = handler;

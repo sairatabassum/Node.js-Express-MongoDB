@@ -1,7 +1,5 @@
+const { sampleHandler } = require("./sampleHandler");
 
-
-const {}=require('./sampleHandler')
-
-const routes={
-    'sample':
-}
+const routes = {
+  sample: sampleHandler,
+};
