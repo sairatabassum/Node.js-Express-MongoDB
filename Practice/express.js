@@ -2,7 +2,9 @@ const express = require("express");
 
 const app = express();
 
-app.use(express.json()); // express.raw(), express.text()
+app.use(express.json()); // express.raw(), express.text(), express.text(), express.urlencoded()
+
+// express.Router(),express.static()
 
 app.get("/", (req, res) => {
   res.send("this is home page");
