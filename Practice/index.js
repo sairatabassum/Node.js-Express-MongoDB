@@ -25,10 +25,12 @@ app.handleReqRes = (req, res) => {
   const path = parsedUrl.pathname;
   const method = req.method.toLowerCase();
   const queryStringObject = parsedUrl.query;
+  const headerObject = req.headers;
 
   console.log(method);
   console.log(queryStringObject);
   console.log(path);
+  console.log(headerObject);
 
   //   response handle
   res.end("Hello world.");
