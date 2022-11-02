@@ -1,5 +1,6 @@
 const http = require("http");
 const url = require("url");
+const { StringDecoder } = require("string_decoder");
 
 // app object - module scaffolding
 const app = {};
@@ -27,13 +28,25 @@ app.handleReqRes = (req, res) => {
   const queryStringObject = parsedUrl.query;
   const headerObject = req.headers;
 
-  console.log(method);
-  console.log(queryStringObject);
-  console.log(path);
-  console.log(headerObject);
+  const decoder = new StringDecoder("utf-8");
+  let realData = "";
 
-  //   response handle
-  res.end("Hello world.");
+  req.on("data", (buffer) => {
+    realData += decoder.write(buffer);
+  });
+
+  req.on("end", () => {
+    realData += decoder.end();
+    console.log(realData);
+
+    //   response handle
+    res.end("Hello world.");
+  });
+
+  // console.log(method);
+  // console.log(queryStringObject);
+  // console.log(path);
+  // console.log(headerObject);
 };
 
 // Start the server
