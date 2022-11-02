@@ -26,7 +26,16 @@ handler.handleReqRes = (req, res) => {
   let realData = "";
 
   const chosenHandler = routes[path] ? routes[path] : notFoundHandler;
-  chosenHandler(requestProperties, () => {});
+
+  chosenHandler(requestProperties, (statusCode, payload) => {
+    statusCode = typeof statusCode === "number" ? statusCode : 500;
+    payload = typeof payload === "object" ? payload : {};
+
+    const payloadString = JSON.stringify(payload);
+
+    res.wrtiteHead(statusCode);
+    res.end(payloadString);
+  });
 
   req.on("data", (buffer) => {
     realData += decoder.write(buffer);
