@@ -6,11 +6,16 @@ app.use(express.json()); // express.raw(), express.text(), express.text(), expre
 
 // express.Router(),express.static()
 
+app.locals.title = "My App";
+
+app.enable("case sensitive routing");
+app.disable("case sensitive routing");
+
 app.get("/", (req, res) => {
   res.send("this is home page");
 });
 
-app.post("/", (req, res) => {
+app.post("/about", (req, res) => {
   console.log(req.body.name);
   res.send("this is home page with post method");
 });
