@@ -1,7 +1,9 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 const adminRoute = express.Router();
 
@@ -23,7 +25,8 @@ app.get("/user/:id", (req, res) => {
   //   console.log(req.hostname);
   //   console.log(req.params);
   //   console.log(req.query);
-  console.log(req.cookies);
+  //   console.log(req.cookies);
+  console.log(req.accepts("html"));
 
   res.send("hello");
 });
