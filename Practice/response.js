@@ -30,10 +30,9 @@ app.get("/about", (req, res) => {
       });
     },
     "application/json": () => {
-      res,
-        json({
-          message: "about",
-        });
+      res.json({
+        message: "about",
+      });
     },
     default: () => {
       res.status(406).send("not acceptable");
