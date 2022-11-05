@@ -5,9 +5,24 @@ const app = express();
 app.set("view engine", "ejs");
 
 app.get("/about", (req, res) => {
-  res.render("pages/about", {
-    name: "Bangladesh",
-  });
+  //   console.log(res.headersSent);
+
+  //   res.render("pages/about", {
+  //     name: "Bangladesh",
+  //   });
+  //   console.log(res.headersSent);
+
+  //   res.send("about");
+  //   res.end();
+
+  //   res.json({
+  //     name: "Bangladesh",
+  //   });
+
+  //   res.status(200);
+  //   res.end();
+
+  res.sendStatus(400);
 });
 
 app.listen(8000, () => {
