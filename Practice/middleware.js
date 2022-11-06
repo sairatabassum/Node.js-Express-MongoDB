@@ -2,6 +2,12 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
 
+/////////Third party middleware
+app.use(cookieParser());
+
+////////Built in middleware
+// app.use(express.json())
+
 const adminRouter = express.Router();
 
 const myMiddleware1 = (req, res, next) => {
@@ -11,7 +17,8 @@ const myMiddleware1 = (req, res, next) => {
     } ${req.protocol} ${req.ip}`
   );
   //   res.end();
-  next();
+  //   next();
+  throw new Error("This is an error");
 };
 
 //////////Router level middleware
@@ -35,6 +42,14 @@ app.use("/admin", adminRouter);
 app.get("/about", (req, res) => {
   res.send("About");
 });
+
+const errorMiddleware = (err, req, res, next) => {
+  console.log(err.message);
+  res.status(500).send("There was a server side error");
+};
+
+/////////Error middleware
+adminRouter.use(errorMiddleware);
 
 app.listen(8000, () => {
   console.log("Listening on port 8000");
