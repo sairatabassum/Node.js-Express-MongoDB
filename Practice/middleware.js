@@ -10,19 +10,36 @@ app.use(cookieParser());
 
 const adminRouter = express.Router();
 
-const myMiddleware1 = (req, res, next) => {
-  console.log(
-    `${new Date(Date.now()).toLocaleString()} - ${req.method} - ${
-      req.originalUrl
-    } ${req.protocol} ${req.ip}`
-  );
-  //   res.end();
-  //   next();
-  throw new Error("This is an error");
+const loggerWrapper = (options) => {
+  return function (req, res, next) {
+    if (options.log) {
+      console.log(
+        `${new Date(Date.now()).toLocaleString()} - ${req.method} - ${
+          req.originalUrl
+        } ${req.protocol} ${req.ip}`
+      );
+      next();
+    } else {
+      throw new Error("Failed to log");
+    }
+  };
 };
 
+adminRouter.use(loggerWrapper({ log: true }));
+
+// const myMiddleware1 = (req, res, next) => {
+//   console.log(
+//     `${new Date(Date.now()).toLocaleString()} - ${req.method} - ${
+//       req.originalUrl
+//     } ${req.protocol} ${req.ip}`
+//   );
+//   //   res.end();
+//   //   next();
+//   throw new Error("This is an error");
+// };
+
 //////////Router level middleware
-adminRouter.use(myMiddleware1);
+// adminRouter.use(myMiddleware1);
 
 adminRouter.get("/dashboard", (req, res) => {
   res.send("Dashboard");
