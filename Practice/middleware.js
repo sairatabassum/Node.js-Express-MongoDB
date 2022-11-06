@@ -2,10 +2,10 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
 
-/////////Third party middleware
+/////////-------------Third party middleware
 app.use(cookieParser());
 
-////////Built in middleware
+////////--------------Built in middleware
 // app.use(express.json())
 
 const adminRouter = express.Router();
@@ -25,6 +25,7 @@ const loggerWrapper = (options) => {
   };
 };
 
+// If we want to send any information into the function
 adminRouter.use(loggerWrapper({ log: false }));
 
 // const myMiddleware1 = (req, res, next) => {
@@ -38,7 +39,7 @@ adminRouter.use(loggerWrapper({ log: false }));
 //   throw new Error("This is an error");
 // };
 
-//////////Router level middleware
+//////////-------------Router level middleware
 // adminRouter.use(myMiddleware1);
 
 adminRouter.get("/dashboard", (req, res) => {
@@ -50,7 +51,7 @@ adminRouter.get("/dashboard", (req, res) => {
 //   next();
 // };
 
-////////Application level middleware
+////////------------Application level middleware
 // app.use(myMiddleware1);
 
 app.use("/admin", adminRouter);
@@ -65,7 +66,7 @@ const errorMiddleware = (err, req, res, next) => {
   res.status(500).send("There was a server side error");
 };
 
-/////////Error middleware
+/////////--------------Error middleware
 adminRouter.use(errorMiddleware);
 
 app.listen(8000, () => {
