@@ -25,7 +25,7 @@ const loggerWrapper = (options) => {
   };
 };
 
-adminRouter.use(loggerWrapper({ log: true }));
+adminRouter.use(loggerWrapper({ log: false }));
 
 // const myMiddleware1 = (req, res, next) => {
 //   console.log(
