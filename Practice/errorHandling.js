@@ -7,10 +7,11 @@ app.get("/", (req, res) => {
 });
 
 // 404 error handler
-app.use((req, res, next) => {
-  next("request url was not found");
-});
+// app.use((req, res, next) => {
+//   next("request url was not found");
+// });
 
+// custom error handling
 app.use((err, req, res, next) => {
   // handle error here
   if (res.headerSent) {
