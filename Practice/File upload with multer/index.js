@@ -23,9 +23,9 @@ var upload = multer({
         cb(new Error("Only .jpg, .png or .jpeg format allowed"), false);
       }
     } else if (file.fieldname === "doc") {
-      if (file.mimetype === "doc") {
+      if (file.mimetype === "application/pdf") {
         cb(null, true);
-      } else if (file.fieldname === "application/pdf") {
+      } else {
         cb(new Error("Only .pdf format allowed"));
       }
     }
