@@ -18,9 +18,23 @@ const app = express();
 // });
 
 // For multiple file upload
-app.post("/", upload.array("avatar", 3), (req, res) => {
-  res.send("Hello World");
-});
+// app.post("/", upload.array("avatar", 3), (req, res) => {
+//   res.send("Hello World");
+// });
+
+app.post(
+  "/",
+  upload.fields(
+    {
+      name: "avatar",
+      maxCount: 1,
+    },
+    { name: "gallery", maxCount: 2 }
+  ),
+  (req, res) => {
+    res.send("Hello World");
+  }
+);
 
 app.listen(3000, () => {
   console.log("App listening at port 3000");
