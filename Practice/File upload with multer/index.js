@@ -21,9 +21,9 @@ const app = express();
 // });
 
 // For multiple file upload
-// app.post("/", upload.array("avatar", 3), (req, res) => {
-//   res.send("Hello World");
-// });
+app.post("/", upload.array("avatar", 3), (req, res) => {
+  res.send("Hello World");
+});
 
 // For multipart form
 // app.post(
@@ -37,9 +37,9 @@ const app = express();
 //   }
 // );
 
-app.post("/", upload.none(), (req, res) => {
-  res.send("Hello World!!");
-});
+// app.post("/", upload.none(), (req, res) => {
+//   res.send("Hello World!!");
+// });
 
 app.listen(3000, () => {
   console.log("App listening at port 3000");
