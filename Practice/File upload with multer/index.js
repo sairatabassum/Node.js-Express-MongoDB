@@ -26,28 +26,29 @@ var upload = multer({
 const app = express();
 
 // application route
-// For single file upload
+// For single file upload-----------
 // app.post("/", upload.single("avatar"), (req, res) => {
 //   res.send("Hello World");
 // });
 
 // For multiple file upload
-app.post("/", upload.array("avatar", 3), (req, res) => {
-  res.send("Hello World");
-});
+// app.post("/", upload.array("avatar", 3), (req, res) => {
+//   res.send("Hello World");
+// });
 
-// For multipart form
-// app.post(
-//   "/",
-//   upload.fields([
-//     { name: "avatar", maxCount: 1 },
-//     { name: "gallery", maxCount: 2 },
-//   ]),
-//   (req, res) => {
-//     res.send("Hello World");
-//   }
-// );
+// For multipart form-------
+app.post(
+  "/",
+  upload.fields([
+    { name: "avatar", maxCount: 3 },
+    { name: "doc", maxCount: 2 },
+  ]),
+  (req, res) => {
+    res.send("Hello World");
+  }
+);
 
+// For none ----------------
 // app.post("/", upload.none(), (req, res) => {
 //   res.send("Hello World!!");
 // });
