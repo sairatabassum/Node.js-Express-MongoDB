@@ -18,7 +18,7 @@ const app = express();
 // });
 
 // For multiple file upload
-app.post("/", upload.array("avatar"), (req, res) => {
+app.post("/", upload.array("avatar", 3), (req, res) => {
   res.send("Hello World");
 });
 
