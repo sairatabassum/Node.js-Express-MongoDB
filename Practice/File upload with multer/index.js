@@ -12,7 +12,7 @@ var upload = multer({
 const app = express();
 
 // application route
-app.get("/", (req, res) => {
+app.post("/", upload.single("avatar"), (req, res) => {
   res.send("Hello World");
 });
 
