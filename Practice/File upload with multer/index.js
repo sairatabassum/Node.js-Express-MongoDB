@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 
 // File upload folder
-const UPLOADS_FOLDER = "/uploads/";
+const UPLOADS_FOLDER = "upload/";
 
 // prepare the final multer upload object
 var upload = multer({
