@@ -10,6 +10,17 @@ var upload = multer({
   limits: {
     fileSize: 1000000, //1MB
   },
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/jpg" ||
+      file.mimetype === "image/jpeg"
+    ) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only .jpg, .png or .jpeg format allowed"), false);
+    }
+  },
 });
 
 const app = express();
@@ -40,6 +51,19 @@ app.post("/", upload.array("avatar", 3), (req, res) => {
 // app.post("/", upload.none(), (req, res) => {
 //   res.send("Hello World!!");
 // });
+
+// default error handler
+app.use((err, req, res, next) => {
+  if (err) {
+    if (err instanceof multer.MulterError) {
+      res.status(500).send("There was an upload error");
+    } else {
+      res.status(500).send(err.message);
+    }
+  } else {
+    res.send("success");
+  }
+});
 
 app.listen(3000, () => {
   console.log("App listening at port 3000");
