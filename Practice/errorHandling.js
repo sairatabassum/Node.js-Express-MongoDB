@@ -2,14 +2,24 @@ const express = require("express");
 const fs = require("fs");
 const app = express();
 
+// app.get("/", (req, res, next) => {
+//   fs.readFile("/file-does-not-exist", (err, data) => {
+//     if (err) {
+//       next(err);
+//     } else {
+//       res.send(data);
+//     }
+//   });
+// });
+
 app.get("/", (req, res, next) => {
-  fs.readFile("/file-does-not-exist", (err, data) => {
-    if (err) {
+  setTimeout(function () {
+    try {
+      console.log(a);
+    } catch (err) {
       next(err);
-    } else {
-      res.send(data);
     }
-  });
+  }, 100);
 });
 
 // app.get("/", (req, res) => {
