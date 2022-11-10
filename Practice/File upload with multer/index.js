@@ -25,13 +25,10 @@ const app = express();
 // For multipart form
 app.post(
   "/",
-  upload.fields(
-    {
-      name: "avatar",
-      maxCount: 1,
-    },
-    { name: "gallery", maxCount: 2 }
-  ),
+  upload.fields([
+    { name: "avatar", maxCount: 1 },
+    { name: "gallery", maxCount: 2 },
+  ]),
   (req, res) => {
     res.send("Hello World");
   }
