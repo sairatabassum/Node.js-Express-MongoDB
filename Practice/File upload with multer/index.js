@@ -12,7 +12,13 @@ var upload = multer({
 const app = express();
 
 // application route
-app.post("/", upload.single("avatar"), (req, res) => {
+// For single file upload
+// app.post("/", upload.single("avatar"), (req, res) => {
+//   res.send("Hello World");
+// });
+
+// For multiple file upload
+app.post("/", upload.array("avatar"), (req, res) => {
   res.send("Hello World");
 });
 
