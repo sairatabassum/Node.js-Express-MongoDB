@@ -11,14 +11,23 @@ var upload = multer({
     fileSize: 1000000, //1MB
   },
   fileFilter: (req, file, cb) => {
-    if (
-      file.mimetype === "image/png" ||
-      file.mimetype === "image/jpg" ||
-      file.mimetype === "image/jpeg"
-    ) {
-      cb(null, true);
-    } else {
-      cb(new Error("Only .jpg, .png or .jpeg format allowed"), false);
+    // console.log(file);
+    if (file.fieldname === "avatar") {
+      if (
+        file.mimetype === "image/png" ||
+        file.mimetype === "image/jpg" ||
+        file.mimetype === "image/jpeg"
+      ) {
+        cb(null, true);
+      } else {
+        cb(new Error("Only .jpg, .png or .jpeg format allowed"), false);
+      }
+    } else if (file.fieldname === "doc") {
+      if (file.mimetype === "doc") {
+        cb(null, true);
+      } else if (file.fieldname === "application/pdf") {
+        cb(new Error("Only .pdf format allowed"));
+      }
     }
   },
 });
