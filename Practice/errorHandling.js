@@ -1,10 +1,20 @@
 const express = require("express");
-
+const fs = require("fs");
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send(a);
+app.get("/", (req, res, next) => {
+  fs.readFile("/file-does-not-exist", (err, data) => {
+    if (err) {
+      next(err);
+    } else {
+      res.send(data);
+    }
+  });
 });
+
+// app.get("/", (req, res) => {
+//   res.send(a);
+// });
 
 // 404 error handler
 // app.use((req, res, next) => {
