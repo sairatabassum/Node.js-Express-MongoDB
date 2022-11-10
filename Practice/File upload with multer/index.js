@@ -28,6 +28,8 @@ var upload = multer({
       } else {
         cb(new Error("Only .pdf format allowed"));
       }
+    } else {
+      cb(new Error("There was an unknown error"));
     }
   },
 });
