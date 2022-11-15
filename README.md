@@ -2,6 +2,8 @@
 
 1. MongoDB INSERT:
 
+![image](https://user-images.githubusercontent.com/52861859/201832584-cfd398ba-261e-4a36-a4ea-a5f4662786da.png)
+
 ![image](https://user-images.githubusercontent.com/52861859/187192320-190eee22-05e0-448f-85b5-fb8f16fccd1d.png)
 
 2. MongoDB FIND:
