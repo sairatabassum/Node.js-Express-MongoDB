@@ -23,6 +23,7 @@ const storage = multer.diskStorage({
       Date.now();
     cb(null, fileName + fileExt);
   },
+  mongoDB,
 });
 
 // prepare the final multer upload object
