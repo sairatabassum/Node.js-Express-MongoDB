@@ -7,7 +7,10 @@ app.use(express.json());
 
 // database connection with mongoose
 mongoose
-  .connect("mongodb://localhost/todos")
+  .connect("mongodb://localhost/todos", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("connection sucessful");
   })
