@@ -5,6 +5,14 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 
+// database connection with mongoose
+mongoose
+  .connect("mongodb://localhost/todos")
+  .then(() => {
+    console.log("connection sucessful");
+  })
+  .catch((err) => console.log(err));
+
 // application routes
 
 // default error handler
