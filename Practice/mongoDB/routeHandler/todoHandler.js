@@ -11,7 +11,9 @@ router.get("/", async (req, res) => {});
 router.get("/:id", async (req, res) => {});
 
 // POST TODO
-router.post("/", async (req, res) => {});
+router.post("/", async (req, res) => {
+  const newTodo = new TOdo(req.body);
+});
 
 // POST MULTIPLE TODO
 router.post("/all", async (req, res) => {});
