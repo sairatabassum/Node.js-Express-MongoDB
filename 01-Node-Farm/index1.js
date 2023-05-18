@@ -23,8 +23,8 @@ const productData = JSON.parse(data);
 const slugs = productData.map((el) => slugify(el.productName, { lower: true }));
 
 const server = http.createServer((req, res) => {
-  //   console.log(req.url);
-  //   console.log(url.parse(req.url, true));
+  // console.log(req.url);
+  // console.log(url.parse(req.url, true));
   const { query, pathname } = url.parse(req.url, true);
 
   //   Overview page

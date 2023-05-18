@@ -76,7 +76,7 @@ server.listen(3000, '127.0.0.1', () => {
 // *******Building a (Very) Simple API*******
 
 // ** executed once **
-
+/*
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const productData = JSON.parse(data);
 
@@ -110,3 +110,4 @@ const server = http.createServer((req, res) => {
 server.listen(8000, '127.0.0.1', () => {
   console.log('Listening to request on port 8000');
 });
+*/
