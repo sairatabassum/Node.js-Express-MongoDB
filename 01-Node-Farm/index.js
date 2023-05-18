@@ -6,9 +6,8 @@ const url = require('url');
 // const hello = 'hello world';
 // console.log(hello);
 
-//////////////////////////////////////////////////////////////
-// ******Reading and Writing Files*******
-// Blocking, synchronous way
+////////////////////////////////////////////////////////////////////////////////
+// ******Reading and Writing Files******* ( Blocking, synchronous way)
 
 // const textIn = fs.readFileSync('./txt/input.txt', 'utf-8');
 // console.log(textIn);
@@ -17,16 +16,17 @@ const url = require('url');
 // fs.writeFileSync('./txt/output.txt', textOut);
 // console.log('File has been written');
 
-////////////////////////////////////////////////////////
-// Non-blocking, asynchronous way
-// Reading and Writing Files Asynchronously
+////////////////////////////////////////////////////////////////////////////////
+// *******Reading and Writing Files Asynchronously******* (Non-blocking, asynchronous way)
 
 // fs.readFile('./txt/start.txt', 'utf-8', (err, data) => {
 //   console.log(data);
 // });
 // console.log('Will read-file');
 
-// fs.readFile('./txt/starttt.txt', 'utf-8', (err, data1) => { // file does not exist
+// fs.readFile('./txt/starttt.txt', 'utf-8', (err, data1) => {
+//   console.log(err);
+// }); // file does not exist
 
 /*
 fs.readFile('./txt/start.txt', 'utf-8', (err, data1) => {
@@ -45,12 +45,13 @@ fs.readFile('./txt/start.txt', 'utf-8', (err, data1) => {
 });
 console.log('will  read file!!');
 */
-//////////////////////////////////////
-// Creating a Simple Web Server
+
+////////////////////////////////////////////////////////////////////////////////
+// *******Creating a Simple Web Server*******
 /*
 const server = http.createServer((req, res) => {
-  // console.log(req.url);
   const pathName = req.url;
+  console.log(pathName);
 
   // Routing
   if (pathName === '/' || pathName === '/overview') {
@@ -66,16 +67,16 @@ const server = http.createServer((req, res) => {
   }
 });
 
-
-server.listen(8000, '127.0.0.1', () => {
-  console.log('Listening to request on port 8000');
+server.listen(3000, '127.0.0.1', () => {
+  console.log('Listening to request on port 3000');
 });
 */
 
-//////////////////////////////////////////
-// Building a (Very) Simple API
+////////////////////////////////////////////////////////////////////////////////
+// *******Building a (Very) Simple API*******
 
 // ** executed once **
+
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const productData = JSON.parse(data);
 
@@ -83,7 +84,7 @@ const server = http.createServer((req, res) => {
   const pathName = req.url;
 
   if (pathName === '/' || pathName === '/overview') {
-    res.end('This is the overvirw');
+    res.end('This is the overview');
   } else if (pathName === '/product') {
     res.end('This is the product');
   } else if (pathName === '/api') {
