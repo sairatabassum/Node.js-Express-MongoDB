@@ -2,7 +2,7 @@ const fs = require('fs');
 const http = require('http');
 const url = require('url');
 const slugify = require('slugify');
-const replaceTemplate = require('./module.js/replaceTemplate');
+const replaceTemplate = require('./modules/replaceTemplate');
 
 const tempOverview = fs.readFileSync(
   `${__dirname}/templates/overview.html`,
@@ -42,8 +42,13 @@ const server = http.createServer((req, res) => {
   //   Product page
   else if (pathname === '/product') {
     res.writeHead(200, { 'Content-type': 'text/html' });
-    const product = productData[query.id];
-    console.log(product);
+    const endURL = query.name;
+    const productName = endURL.replace(/-/g, ' ').toUpperCase();
+    // console.log(productName);
+    const product = productData.find(
+      (product) => product.productName.toUpperCase() === productName
+    );
+    // console.log(product);
     const output = replaceTemplate(tempProduct, product);
     res.end(output);
   }
