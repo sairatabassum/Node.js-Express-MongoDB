@@ -32,6 +32,11 @@
   
 ![image](https://github.com/user-attachments/assets/b6082b73-7cf7-440f-9593-b3b4d8dd4857)
 
+- Many field show
+
+![image](https://github.com/user-attachments/assets/9a81decc-1c70-4d8a-90e0-4594bfc62d1b)
+
+
 
 3. MongoDB UPDATING:
 
