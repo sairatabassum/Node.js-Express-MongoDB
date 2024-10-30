@@ -1,6 +1,6 @@
 # Node.js-Express-MongoDB
 
-***  Check MongoDB Shell - mongos command
+***  Check MongoDB Shell - mongosh command
 
 1. MongoDB INSERT:
 
