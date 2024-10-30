@@ -28,6 +28,11 @@
 
 ![image](https://user-images.githubusercontent.com/52861859/187202424-eb0d2f49-d6c2-40bc-9e7e-eedb68a4da23.png)
 
+- Only one field show
+  
+![image](https://github.com/user-attachments/assets/b6082b73-7cf7-440f-9593-b3b4d8dd4857)
+
+
 3. MongoDB UPDATING:
 
 
