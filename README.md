@@ -1,5 +1,7 @@
 # Node.js-Express-MongoDB
 
+***  Check MongoDB Shell - mongos command
+
 1. MongoDB INSERT:
 
 ![image](https://user-images.githubusercontent.com/52861859/201832584-cfd398ba-261e-4a36-a4ea-a5f4662786da.png)
